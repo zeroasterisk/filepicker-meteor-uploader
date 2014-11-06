@@ -15,7 +15,7 @@ Just enter your API Key and use it...
 The API Key is stored in a Collection,
 so it should only be required the first time you run it.
 
-Click "New API Key" *(on the right)* to remove/delete/forget the API key and start over.
+Click "Forget API Key" *(on the right)* to remove/delete/forget the API key and start over.
 *If you're using the demo site, or any public host, be sure to do this!*
 
 ### Setup:

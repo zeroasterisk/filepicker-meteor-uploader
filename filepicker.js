@@ -46,7 +46,7 @@ if (Meteor.isClient) {
       }
       FpApiKey.upsert({_id: 'apikey'}, {_id: 'apikey', val: apikey});
     },
-    'click .new': function() {
+    'click .forget': function() {
       Session.set('apikey', null);
       FpApiKey.remove({_id: 'apikey'});
       delete filepicker;
