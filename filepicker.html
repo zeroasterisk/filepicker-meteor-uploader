@@ -1,0 +1,81 @@
+<head>
+  <title>filepicker</title>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Filepicker Uploader</h1>
+
+    <div class="well">
+      {{> picker}}
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <p class="alert alert-info">Just Uploaded</p>
+        {{> lister}}
+      </div>
+      <div class="col-md-6">
+        <p class="alert alert-info">Stored Uploads</p>
+        {{> stored}}
+      </div>
+    </div>
+  </div>
+</body>
+
+<template name="picker">
+{{#if isKeyEntered}}
+  {{#if isReady}}
+    <input type="filepicker-dragdrop" data-fp-apikey="AlYuPfsxZR6SA1MLnywccz" data-fp-mimetypes="image/*" data-fp-container="modal" data-fp-multiple="true" onchange="Session.set('fpfiles', event.fpfiles);">
+  {{else}}
+    loading...
+  {{/if}}
+{{else}}
+  <form action="?" id="apikeyform" role="form" class="form-inline">
+    <div class="form-group">
+      <label>
+        <label class="sr-only" for="apikey">API Key</label>
+        <input class="form-control" type="text" id="apikey" placeholder="API Key Here..." style="min-width:300px;">
+      </label>
+      <button type="submit" class="btn btn-primary">Setup</button>
+    </div>
+  </form>
+{{/if}}
+</template>
+
+<template name="lister">
+{{#each files}}
+<p>
+<a href="#" class="store btn btn-primary pull-right">
+  <span class="glyphicon glyphicon-download"></span>
+  store
+</a>
+<strong>{{filename}}</strong><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <em>{{mimetype}}</em><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <em>{{size}}</em><br>
+&nbsp;&nbsp;&nbsp;&nbsp; {{url}}<br>
+{{#if isImg}}
+<img src="{{url}}"><br>
+{{/if}}
+</p>
+{{/each}}
+</template>
+
+<template name="stored">
+{{#each files}}
+<p>
+<a href="#" class="forget btn btn-danger pull-right">
+  <span class="glyphicon glyphicon-remove"></span>
+  forget
+</a>
+<strong>{{filename}}</strong><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <em>{{mimetype}}</em><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <em>{{size}}</em><br>
+&nbsp;&nbsp;&nbsp;&nbsp; {{url}}<br>
+{{#if isImg}}
+<img src="{{url}}"><br>
+{{/if}}
+</p>
+{{/each}}
+</template>
+
