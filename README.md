@@ -8,7 +8,7 @@ Lovingly crafted with [meteor](https://meteor.com) on [meteorday](http://meteord
 
 ### Demo:
 
-[filepicker.meteor.com](http://filepicker.meteor.com)
+[file-picker.meteor.com](http://file-picker.meteor.com)
 
 Just enter your API Key and use it...
 
