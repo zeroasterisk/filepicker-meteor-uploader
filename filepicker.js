@@ -1,3 +1,4 @@
+FpApiKey = new Meteor.Collection('fpapikey');
 FpFiles = new Meteor.Collection('fpfiles');
 FilepickerLoaded = false;
 
@@ -9,32 +10,46 @@ if (Meteor.isClient) {
 
   Meteor.startup(function () {
     Session.set('fpfiles', []);
+    Session.set('apikey', null);
 
-    Tracker.autorun(function (filepicker) {
-      FilepickerLoaded = (typeof filepicker === "object");
+    // saved apikey?
+    Tracker.autorun(function () {
+      var saved = FpApiKey.findOne({_id: 'apikey'});
+      if (saved && saved.val) {
+        Session.set('apikey', saved.val);
+      }
+      // autoloading via session or saved apikey?
+      if (Session.get('apikey')) {
+        loadFilePicker(Session.get('apikey'));
+      }
     });
 
+    // setup reactive "loaded" variable
+    //   since the filepicker plugin doesn't "tell" us that
+    Tracker.autorun(function (filepicker) {
+      FilepickerLoaded = (typeof filepicker === "object");
+      Session.set('fploaded', (typeof filepicker === "object"));
 
-    if (Session.get('apikey')) {
-      loadFilePicker(Session.get('apikey'));
-    }
-
+      var apikey = Session.get('apikey');
+      if (FilepickerLoaded && apikey && _.has(filepicker, 'setKey')) {
+        filepicker.setKey(apikey);
+      }
+    });
   });
 
   Template.picker.events({
     'submit form': function(event) {
       event.preventDefault();
-      Session.set('apikey', $('#apikey').val());
-      loadFilePicker(Session.get('apikey'));
-    }
-  });
-
-  Template.picker.helpers({
-    'isKeyEntered': function() {
-      return (Session.get('apikey'));
+      var apikey = $('#apikey').val();
+      if (apikey.length < 8) {
+        return false;
+      }
+      FpApiKey.upsert({_id: 'apikey'}, {_id: 'apikey', val: apikey});
     },
-    'isReady': function() {
-      return FilepickerLoaded;
+    'click .new': function() {
+      Session.set('apikey', null);
+      FpApiKey.remove({_id: 'apikey'});
+      delete filepicker;
     }
   });
 

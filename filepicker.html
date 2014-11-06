@@ -23,10 +23,30 @@
   </div>
 </body>
 
+<template name="pickerArea">
+  <div id="picker-area">
+    <input type="filepicker-dragdrop"
+    data-fp-apikey="AlYuPfsxZR6SA1MLnywccz"
+    data-fp-mimetypes="image/*"
+    data-fp-button-class="btn btn-primary"
+    data-fp-drag-class="fpdrag"
+    data-fp-container="modal"
+    data-fp-multiple="true"
+    onchange="Session.set('fpfiles', event.fpfiles);">
+  </div>
+</template>
+
 <template name="picker">
-{{#if isKeyEntered}}
-  {{#if isReady}}
-    <input type="filepicker-dragdrop" data-fp-apikey="AlYuPfsxZR6SA1MLnywccz" data-fp-mimetypes="image/*" data-fp-container="modal" data-fp-multiple="true" onchange="Session.set('fpfiles', event.fpfiles);">
+{{#if $.Session.get "apikey"}}
+  {{#if $.Session.get "fploaded"}}
+    <div class="row">
+      <div class="col-md-8">
+        {{> pickerArea}}
+      </div>
+      <div class="col-md-4 text-right">
+        <a class="btn btn-default btn-sm new" href="#">new api key</a>
+      </div>
+    </div>
   {{else}}
     loading...
   {{/if}}

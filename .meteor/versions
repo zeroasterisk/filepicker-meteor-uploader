@@ -42,6 +42,7 @@ mongo@1.0.8
 natestrauser:filepicker-plus@1.2.3
 observe-sequence@1.0.3
 ordered-dict@1.0.1
+raix:handlebar-helpers@0.1.3
 random@1.0.1
 reactive-dict@1.0.4
 reactive-var@1.0.3
