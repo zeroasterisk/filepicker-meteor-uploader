@@ -109,6 +109,9 @@ if (Meteor.isServer) {
   BrowserPolicy.content.allowScriptOrigin("http://*.filepicker.io");
   BrowserPolicy.content.allowInlineScripts("http://*.filepicker.io");
 
+  BrowserPolicy.content.allowImageOrigin("https://camo.githubusercontent.com");
+  BrowserPolicy.content.allowImageOrigin("https://s3.amazonaws.com/");
+
   Meteor.startup(function () {
     // code to run on server at startup
   });
