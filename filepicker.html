@@ -4,7 +4,22 @@
 
 <body>
   <div class="container">
-    <h1>Filepicker Uploader</h1>
+    <h1>
+      <a href="https://www.filepicker.io/">Filepicker.io</a>
+      <small>
+        Uploader
+        <span class="hidden-xs">
+          / Picker
+          <em class="hidden-sm">
+            &nbsp;
+            <small>
+              <span class="glyphicon glyphicon-thumbs-up"></span>
+              Trust me, it's Aweosme!
+            </small>
+          </em>
+        </span>
+      </small>
+    </h1>
 
     <div class="well">
       {{> picker}}
@@ -69,7 +84,10 @@
         <label class="sr-only" for="apikey">API Key</label>
         <input class="form-control" type="text" id="apikey" placeholder="API Key Here..." style="min-width:300px;">
       </label>
-      <button type="submit" class="btn btn-primary">Setup</button>
+      <div class="btn-group">
+        <button type="submit" class="btn btn-primary">Store API Key</button>
+        <a href="https://www.filepicker.io/" class="btn btn-link" target="_blank">Get One</a>
+      </div>
     </div>
   </form>
 {{/if}}
