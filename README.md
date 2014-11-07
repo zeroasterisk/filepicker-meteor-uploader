@@ -21,12 +21,17 @@ Click "Forget API Key" *(on the right)* to remove/delete/forget the API key and 
 ### Setup:
 
     git clone https://github.com/zeroasterisk/filepicker-meteor-uploader.git
+    cd filepicker-meteor-uploader
+    meteor
+
+then go to [http://localhost:3000](http://localhost:3000)
 
 ### Todo:
 
 * preview other filetypes besides images
 * make secure
 * make publish/subscribe
+* any way to tie into AWS S3 storage for *"all exisitng files"*?
 
 
 ### License: MIT
